@@ -2,11 +2,22 @@
 let playerScore = 0;
 let computerScore = 0;
 
+let playerSelection = "";
+
+let playerPiedra = document.getElementById("playerPiedra")
+let playerPapel = document.getElementById("playerPapel")
+let playerTijera = document.getElementById("playerTijera")
+let resultado = document.getElementById("resultado")
+playerPiedra.addEventListener("click", () => {playerInput("piedra")})
+playerPapel.addEventListener("click", () => {playerInput("papel")})
+playerTijera.addEventListener("click", () => {playerInput("tijera")})
+playerPiedra.addEventListener("click", () => {round()})
+playerPapel.addEventListener("click", () => {round()})
+playerTijera.addEventListener("click", () => {round()})
+
 // Pedir jugada a jugador
-function playerInput() {
-  let input = prompt("Cachipun! Piedra, papel o tijera");
-  input = input.toLowerCase();
-  return input;
+function playerInput(inp) {
+  playerSelection = inp
 }
 // generar jugada computadora
 function computerPlay() {
@@ -45,31 +56,9 @@ function playRound(playerSelection, computerSelection) {
 
 // obtiene ambas jugadas, y las pasa a la funcion playRound(), que da el resultado
 function round() {
-  let playerSelection = playerInput();
   let computerSelection = computerPlay();
   let roundResult = playRound(playerSelection, computerSelection);
 
-  console.log(`Elegiste ${playerSelection}`);
-  console.log(`La computadora elige ${computerSelection}`);
-  console.log(roundResult);
-
-  console.log(`Tu puntaje: ${playerScore}`);
-  console.log(`Puntaje de la computadora: ${computerScore}`);
+  resultado.innerHTML = `Elegiste ${playerSelection} <br>La computadora elige ${computerSelection}<br>${roundResult}`;
 }
 
-// funcion prinicpal, pregunta numero de rondas a jugar, llama la funcion round() las veces ingresadas y al final compara el puntaje obtenido y declara un ganador.
-function main() {
-  let roundNumber = parseInt(prompt("¿Cuantas rondas quieres jugar?"));
-  for (let i = 0; i < roundNumber; i++) {
-    round();
-  }
-  if (playerScore === computerScore) {
-    console.log("Es un empate");
-  } else if (playerScore > computerScore) {
-    console.log(`Ganaste ${playerScore} contra ${computerScore}`);
-  } else {
-    console.log(`Perdiste ${computerScore} contra ${playerScore}`);
-  }
-}
-
-main();
