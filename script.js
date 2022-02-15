@@ -57,7 +57,6 @@ function round() {
   console.log(`Puntaje de la computadora: ${computerScore}`);
 }
 
-
 // funcion prinicpal, pregunta numero de rondas a jugar, llama la funcion round() las veces ingresadas y al final compara el puntaje obtenido y declara un ganador.
 function main() {
   let roundNumber = parseInt(prompt("¿Cuantas rondas quieres jugar?"));
